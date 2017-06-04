@@ -45,12 +45,6 @@ namespace DataObject
                 }
             }else // нет файлов
             {
-                MessageBox.Show(
-                "Папка пуста.",
-                "Инфо",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Asterisk);
-
                 Collection.Clear();
             }
         }
@@ -120,7 +114,7 @@ namespace DataObject
                             result.Add(el);
                         }
                     }
-                }
+                }  
             }
             catch (DirectoryNotFoundException ex)
             {

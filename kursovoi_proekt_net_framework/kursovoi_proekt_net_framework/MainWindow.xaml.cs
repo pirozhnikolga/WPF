@@ -62,13 +62,59 @@ namespace kursovoi_proekt_net_framework
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
             int count = 0; // количество удалений
+            int inumerator = 0; // номер файла в списке
 
-            // удаляем выбранные едементы
-            foreach (var inumerator in createListToDelete())
+            List<int> resultList = new List<int>();
+
+            // поиск отмеченных на удаление файлов
+            MyFile current = null;
+            foreach (var item in lstw.Items)
             {
-                fileCollection.Collection.RemoveAt(inumerator - count);
-                ++count;
+                current = item as MyFile;
+                if (current.Clone == true)
+                {
+                    resultList.Add(inumerator);
+                    ++count;
+                }
+                ++inumerator;
             }
+
+            //информируем о рузультате
+            if (resultList.Count == 0)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "Нет файлов для удаления.",
+                    "Инфо",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                DialogResult result = System.Windows.Forms.MessageBox.Show(
+                       "Вы уверены, что хотите удалить все выделенные файлы?",
+                       "ВНИМАНИЕ!!!",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question);
+                if (result == System.Windows.Forms.DialogResult.Yes) //Если нажал Да
+                {
+                    var times = 0;
+                    // удаляем выбранные елементы
+                    foreach (var n in resultList)
+                    {
+                        File.Delete(fileCollection.Collection[n - times].FilePath);
+                        fileCollection.Collection.RemoveAt(n - times);
+                        ++times;
+                    }
+                    System.Windows.Forms.MessageBox.Show(
+                               "Файлы успешно удалены.",
+                               "Готово",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Asterisk);
+                }
+                lb_delete.Content = "Из них удалено файлов: " + count;
+                lb_fin.Content = "Осталось файлов: " + (lstw.Items.Count);
+            }
+          
             // обновляем список
             lstw.ItemsSource = fileCollection.Collection;
 
@@ -100,62 +146,6 @@ namespace kursovoi_proekt_net_framework
             // обновляем лист
             lstw.ItemsSource = fileCollection.Collection;
             lstw.Items.Refresh();
-        }
-
-        // функция для гегерации списка файлов на удаление
-        private List<int> createListToDelete()
-        {
-            int count = 0;
-            int inumerator = 0;
-
-            MyFile current = null;
-            List<int> resultList = new List<int>();
-
-            // поиск отмеченных на удаление файлов
-            foreach (var item in lstw.Items)
-            {
-                current = item as MyFile;
-                if (current.Clone == true)
-                {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(
-                        "Вы уверены, что хотите удалить файл " + current.Name +
-                        " из " + current.FilePath + "?",
-                        "ВНИМАНИЕ!!!",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    if (result == System.Windows.Forms.DialogResult.Yes) //Если нажал Да
-                    {
-                        File.Delete(current.FilePath);
-                        System.Windows.Forms.MessageBox.Show(
-                            "Файл " + current.Name + " успешно удален.",
-                            "Готово",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Asterisk);
-
-                        resultList.Add(inumerator);
-                        ++count;
-                    }
-                }
-                ++inumerator;
-            }
-
-            //информируем о результате
-            if (resultList.Count == 0)
-            {
-                System.Windows.Forms.MessageBox.Show(
-                    "Нет файлов для удаления.",
-                    "Инфо",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                lb_delete.Content = "Из них удалено файлов: " + count;
-                lb_fin.Content = "Осталось файлов: " + (lstw.Items.Count - count);
-            }
-
-            return resultList;
         }
     }
 }
