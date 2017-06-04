@@ -1,0 +1,21 @@
+﻿<Window x:Class="kursovoi_proekt_net_framework.DeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DeleteWindow" Height="91.045" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">Вы уверены?</Label>
+        <Button x:Name="btn_yes" Grid.Column="0" Grid.Row="1" Click="btn_yes_Click">Да</Button>
+        <Button x:Name="btn_yes_for_all" Grid.Column="1" Grid.Row="1" Click="btn_yes_for_all_Click">Да для всех</Button>
+        <Button x:Name="btn_cancel" Grid.Column="2" Grid.Row="1" Click="btn_cancel_Click">Отмена</Button>
+    </Grid>
+</Window>

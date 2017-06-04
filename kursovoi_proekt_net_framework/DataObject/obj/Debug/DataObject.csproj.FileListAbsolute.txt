@@ -1,0 +1,5 @@
+C:\Users\park3\Desktop\PirozhnikDZ\kursovoi_proekt_net_framework\DataObject\bin\Debug\DataObject.dll
+C:\Users\park3\Desktop\PirozhnikDZ\kursovoi_proekt_net_framework\DataObject\bin\Debug\DataObject.pdb
+C:\Users\park3\Desktop\PirozhnikDZ\kursovoi_proekt_net_framework\DataObject\obj\Debug\DataObject.csprojResolveAssemblyReference.cache
+C:\Users\park3\Desktop\PirozhnikDZ\kursovoi_proekt_net_framework\DataObject\obj\Debug\DataObject.dll
+C:\Users\park3\Desktop\PirozhnikDZ\kursovoi_proekt_net_framework\DataObject\obj\Debug\DataObject.pdb
