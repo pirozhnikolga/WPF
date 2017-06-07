@@ -1,4 +1,4 @@
-
+*.suo
 *.exe
 *.obj
 *.[oa]
