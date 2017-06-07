@@ -60,16 +60,29 @@
                 Content="Открыть" />
         </StackPanel>
 
-        <Button
-            x:Name="btn_checkUp"
+        <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Width="200"
-            Height="25"
-            Margin="10"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
-            Command="{Binding CheckUpAll}"
-            Content="Снять все выделения" />
+            Orientation="Horizontal">
+            <Button
+                x:Name="btn_checkUp"
+                Width="200"
+                Height="25"
+                Margin="10"
+                HorizontalAlignment="Left"
+                Command="{Binding CheckUpAll}"
+                Content="Снять все выделения" />
+            <Button
+                x:Name="btn_onlyClones"
+                Width="200"
+                Height="25"
+                Margin="10"
+                HorizontalAlignment="Left"
+                Command="{Binding LeaveOnlyClones}"
+                Content="Показать только дубликаты" />
+        </StackPanel>
 
         <Button
             x:Name="btn_start"
@@ -118,7 +131,7 @@
             Grid.Row="3"
             Grid.Column="0"
             Orientation="Horizontal">
-            <Label x:Name="lb_total" Content="Количество файлов в директории: " />
+            <Label x:Name="lb_total" Content="Всего файлов: " />
             <TextBlock
                 x:Name="tbl_total"
                 Grid.Row="3"
@@ -127,6 +140,7 @@
                 Text="{Binding FilesCollection.Count, UpdateSourceTrigger=PropertyChanged}"
                 TextAlignment="Center" />
         </StackPanel>
+
         <Button
             x:Name="btn_delete"
             Grid.Row="4"

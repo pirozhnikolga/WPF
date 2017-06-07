@@ -81,6 +81,19 @@ namespace DupllicateSearcher.ViewModels
             }
         }
 
+        public ICommand LeaveOnlyClones
+        {
+            get
+            {
+                return new ActionCommand(() =>
+                {
+                    //убираем файлы без дубликатов
+                    var onlyClonelist = FilesCollection.Where(x => x.Clone == true).ToList();
+                    FilesCollection = new ObservableCollection<MyFile>(onlyClonelist);
+                });
+            }
+        }
+
         // метод для отмены удаления на всех документах
         private void CheckUpClones()
         {
@@ -164,7 +177,7 @@ namespace DupllicateSearcher.ViewModels
 
             // поиск отмеченных на удаление файлов
             MyFile current = null;
-            foreach (var item in filesCollection)
+            foreach (var item in FilesCollection)
             {
                 current = item as MyFile;
                 if (current.Clone == true)
